@@ -21,7 +21,7 @@ okhttp = "5.4.0"
 retrofit = "3.0.0"
 roomRuntime = "2.8.4"
 viewpump = "2.1.1"
-weatherview = "3.0.0"
+weatherview = "1.2.0"
 location = "21.4.0"
 
 [libraries]
