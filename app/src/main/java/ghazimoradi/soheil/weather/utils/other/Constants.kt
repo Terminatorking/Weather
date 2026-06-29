@@ -18,3 +18,4 @@ const val APPID = "appid"
 const val FA = "fa"
 const val METRIC = "metric"
 const val CITIES_LIMIT = 5
+const val SOMETHING_WENT_WRONG = "مشکلی پیش آمد!"
