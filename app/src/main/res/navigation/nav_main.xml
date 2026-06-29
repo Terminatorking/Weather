@@ -45,6 +45,6 @@
         tools:layout="@layout/fragment_info">
         <argument
             android:name="Data"
-            app:argType="academy.nouri.weatherapp.data.model.main.ResponseCurrentWeather" />
+            app:argType="ghazimoradi.soheil.weather.data.models.main.ResponseCurrentWeather" />
     </dialog>
 </navigation>
