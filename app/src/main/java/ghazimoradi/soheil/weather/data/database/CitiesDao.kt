@@ -18,5 +18,5 @@ interface CitiesDao {
     suspend fun deleteCity(entity: CitiesEntity)
 
     @Query("Select * FROM $CITIES_TABLE")
-    suspend fun loadCities(): Flow<List<CitiesEntity>>
+    fun loadCities(): Flow<List<CitiesEntity>>
 }
