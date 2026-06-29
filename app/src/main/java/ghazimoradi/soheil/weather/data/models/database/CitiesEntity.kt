@@ -2,7 +2,7 @@ package ghazimoradi.soheil.weather.data.models.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import ghazimoradi.soheil.weather.utils.CITIES_TABLE
+import ghazimoradi.soheil.weather.utils.other.CITIES_TABLE
 
 @Entity(tableName = CITIES_TABLE)
 data class CitiesEntity(

@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.viewbinding.ViewBinding
 import ghazimoradi.soheil.weather.R.string.checkYourNetwork
-import ghazimoradi.soheil.weather.utils.doWorkOnLifecycle
-import ghazimoradi.soheil.weather.utils.showToast
+import ghazimoradi.soheil.weather.utils.other.doWorkOnLifecycle
+import ghazimoradi.soheil.weather.utils.other.showToast
 import ghazimoradi.soheil.weather.viewmodels.CheckInternetViewModel
 
 abstract class BaseFragment<T : ViewBinding> : Fragment() {

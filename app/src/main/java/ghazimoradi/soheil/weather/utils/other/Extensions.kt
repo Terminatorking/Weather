@@ -1,4 +1,4 @@
-package ghazimoradi.soheil.weather.utils
+package ghazimoradi.soheil.weather.utils.other
 
 import android.content.Context
 import android.view.View

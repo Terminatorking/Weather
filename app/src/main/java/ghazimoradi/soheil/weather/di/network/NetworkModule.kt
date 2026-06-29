@@ -8,10 +8,10 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import ghazimoradi.soheil.weather.BuildConfig.DEBUG
 import ghazimoradi.soheil.weather.data.network.ApiServices
-import ghazimoradi.soheil.weather.utils.API_KEY
-import ghazimoradi.soheil.weather.utils.APPID
-import ghazimoradi.soheil.weather.utils.BASE_URL
-import ghazimoradi.soheil.weather.utils.CONNECTION_TIME
+import ghazimoradi.soheil.weather.utils.other.API_KEY
+import ghazimoradi.soheil.weather.utils.other.APPID
+import ghazimoradi.soheil.weather.utils.other.BASE_URL
+import ghazimoradi.soheil.weather.utils.other.CONNECTION_TIME
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level.BODY

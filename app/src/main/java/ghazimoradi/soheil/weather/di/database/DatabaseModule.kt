@@ -8,7 +8,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import ghazimoradi.soheil.weather.data.database.CitiesDataBase
-import ghazimoradi.soheil.weather.utils.CITIES_DATABASE
+import ghazimoradi.soheil.weather.utils.other.CITIES_DATABASE
 import javax.inject.Singleton
 
 @Module

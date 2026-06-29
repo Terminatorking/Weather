@@ -1,4 +1,4 @@
-package ghazimoradi.soheil.weather.utils
+package ghazimoradi.soheil.weather.utils.other
 
 //Server
 const val BASE_URL = "https://api.openweathermap.org/"

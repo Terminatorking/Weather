@@ -11,8 +11,8 @@ import ghazimoradi.soheil.weather.R.string.checkYourNetwork
 import ghazimoradi.soheil.weather.viewmodels.CheckInternetViewModel
 import ghazimoradi.soheil.weather.R.style.RemoveDialogBackground
 import ghazimoradi.soheil.weather.R.color.backShadow
-import ghazimoradi.soheil.weather.utils.doWorkOnLifecycle
-import ghazimoradi.soheil.weather.utils.showToast
+import ghazimoradi.soheil.weather.utils.other.doWorkOnLifecycle
+import ghazimoradi.soheil.weather.utils.other.showToast
 import kotlin.getValue
 
 abstract class BaseBottomSheetFragment<T : ViewBinding> : BottomSheetDialogFragment() {

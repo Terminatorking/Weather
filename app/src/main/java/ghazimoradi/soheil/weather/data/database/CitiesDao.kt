@@ -6,7 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy.Companion.REPLACE
 import androidx.room.Query
 import ghazimoradi.soheil.weather.data.models.database.CitiesEntity
-import ghazimoradi.soheil.weather.utils.CITIES_TABLE
+import ghazimoradi.soheil.weather.utils.other.CITIES_TABLE
 import kotlinx.coroutines.flow.Flow
 
 @Dao
