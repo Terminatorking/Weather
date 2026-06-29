@@ -4,15 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.viewbinding.ViewBinding
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import ghazimoradi.soheil.weather.R.string.checkYourNetwork
+import ghazimoradi.soheil.weather.viewmodels.CheckInternetViewModel
+import ghazimoradi.soheil.weather.R.style.RemoveDialogBackground
+import ghazimoradi.soheil.weather.R.color.backShadow
 import ghazimoradi.soheil.weather.utils.doWorkOnLifecycle
 import ghazimoradi.soheil.weather.utils.showToast
-import ghazimoradi.soheil.weather.viewmodels.CheckInternetViewModel
+import kotlin.getValue
 
-abstract class BaseFragment<T : ViewBinding> : Fragment() {
+abstract class BaseBottomSheetFragment<T : ViewBinding> : BottomSheetDialogFragment() {
     //Binding
     protected abstract val bindingInflater: (inflater: LayoutInflater) -> T
     private var _binding: T? = null
@@ -21,6 +24,8 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
     private val internetViewModel: CheckInternetViewModel by viewModels()
 
     protected var isNetworkAvailable = true
+
+    override fun getTheme(): Int = RemoveDialogBackground
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,6 +45,13 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
                     requireContext().showToast(checkYourNetwork)
                 }
             }
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        dialog?.window?.apply {
+            setBackgroundDrawableResource(backShadow)
         }
     }
 
