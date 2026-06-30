@@ -93,5 +93,5 @@ dependencies {
 
     //Other
     implementation(libs.dynamicsizes)
-    implementation("com.github.jinatonic.confetti:confetti:1.1.2")
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.aar"))))
 }
