@@ -27,4 +27,7 @@
     <string name="no2">دی اکسید نیتروژن</string>
     <string name="so2">دی اکسید گوگرد</string>
     <string name="km_s">km/s</string>
+    <string name="cancel">لغو</string>
+    <string name="go_to_settings">رفتن به تنظیمات</string>
+    <string name="location_permission_needed">برای نمایش وضعیت آب و هوا به دسترسی موقعیت مکانی نیاز است لطفا ان را در تنظیمات فعال کنید</string>
 </resources>
