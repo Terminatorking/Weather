@@ -10,9 +10,6 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Lifecycle.State.CREATED
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.RecyclerView
@@ -57,15 +54,6 @@ fun String.convertToDayName(): String {
     val dateSplit = this.split("-")
     val timeUtils = TimeUtils(dateSplit[0].toInt(), dateSplit[1].toInt(), dateSplit[2].toInt())
     return timeUtils.weekDayStr
-}
-
-fun <T> LiveData<T>.onceObserve(owner: LifecycleOwner, observe: Observer<T>) {
-    observe(owner, object : Observer<T> {
-        override fun onChanged(value: T) {
-            removeObserver(this)
-            observe.onChanged(value)
-        }
-    })
 }
 
 fun View.isVisible(isShownLoading: Boolean, container: View) {
