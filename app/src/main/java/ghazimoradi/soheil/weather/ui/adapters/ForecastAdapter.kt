@@ -11,9 +11,10 @@ import ghazimoradi.soheil.weather.utils.other.BASE_URL_IMAGE
 import ghazimoradi.soheil.weather.utils.other.PNG_IMAGE
 import ghazimoradi.soheil.weather.utils.other.convertToDayName
 import ghazimoradi.soheil.weather.utils.other.loadImage
+import javax.inject.Inject
 
 @SuppressLint("SetTextI18n")
-class ForecastAdapter : BaseAdapter<ItemForecastBinding, Data>() {
+class ForecastAdapter @Inject constructor() : BaseAdapter<ItemForecastBinding, Data>() {
 
     override val bindingInflater: (inflater: LayoutInflater, parent: ViewGroup, attach: Boolean) -> ItemForecastBinding
         get() = ItemForecastBinding::inflate

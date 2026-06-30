@@ -5,8 +5,10 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.StringRes
+import androidx.core.view.WindowCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Lifecycle.State.CREATED
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
@@ -80,6 +82,14 @@ fun Fragment.doWorkOnLifecycle(work: suspend () -> Unit) {
     viewLifecycleOwner.lifecycleScope.launch {
         repeatOnLifecycle(CREATED) {
             work()
+        }
+    }
+}
+
+fun FragmentActivity.setStatusBarIconsColor(isDark: Boolean) {
+    this.window.apply {
+        WindowCompat.getInsetsController(this, this.decorView).apply {
+            isAppearanceLightStatusBars = isDark
         }
     }
 }
