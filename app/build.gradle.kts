@@ -93,5 +93,5 @@ dependencies {
 
     //Other
     implementation(libs.dynamicsizes)
-    implementation(libs.weatherview)
+    implementation("com.github.jinatonic.confetti:confetti:1.1.2")
 }

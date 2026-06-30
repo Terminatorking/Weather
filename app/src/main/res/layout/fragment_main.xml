@@ -168,7 +168,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!--WeatherView-->
-    <xyz.matteobattilana.library.WeatherView
+    <ghazimoradi.soheil.weather.utils.customview.weatherview.WeatherView
         android:id="@+id/weatherView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
