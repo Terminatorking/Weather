@@ -3,7 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/splashFragment">
+
+    <action
+        android:id="@+id/actionToMain"
+        app:destination="@id/mainFragment" />
+
     <!--Main-->
     <fragment
         android:id="@+id/mainFragment"
@@ -47,4 +52,10 @@
             android:name="Data"
             app:argType="ghazimoradi.soheil.weather.data.models.main.ResponseCurrentWeather" />
     </dialog>
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="ghazimoradi.soheil.weather.ui.fragments.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" />
 </navigation>
