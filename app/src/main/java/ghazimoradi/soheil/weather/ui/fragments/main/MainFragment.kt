@@ -4,6 +4,7 @@ import android.Manifest.permission
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -14,7 +15,10 @@ import coil3.load
 import coil3.request.crossfade
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.Priority.PRIORITY_HIGH_ACCURACY
 import dagger.hilt.android.AndroidEntryPoint
+import ghazimoradi.soheil.weather.R.color.black
+import ghazimoradi.soheil.weather.R.color.white
 import ghazimoradi.soheil.weather.R.drawable.bg_cloud
 import ghazimoradi.soheil.weather.R.drawable.bg_haze
 import ghazimoradi.soheil.weather.R.drawable.bg_night
@@ -36,13 +40,12 @@ import ghazimoradi.soheil.weather.utils.network.NetworkRequest
 import ghazimoradi.soheil.weather.utils.other.doWorkOnLifecycle
 import ghazimoradi.soheil.weather.utils.other.isVisible
 import ghazimoradi.soheil.weather.utils.other.setStatusBarIconsColor
+import ghazimoradi.soheil.weather.utils.other.setTint
 import ghazimoradi.soheil.weather.utils.other.setupRecyclerview
 import ghazimoradi.soheil.weather.utils.other.showSnackBar
 import ghazimoradi.soheil.weather.viewmodels.MainViewModel
-import kotlinx.coroutines.delay
 import java.util.Calendar
 import javax.inject.Inject
-import kotlin.time.Duration.Companion.milliseconds
 
 @SuppressLint("SetTextI18n")
 @AndroidEntryPoint
@@ -79,11 +82,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
         locationClient = LocationServices.getFusedLocationProviderClient(requireContext())
 
-        doWorkOnLifecycle {
-            getLocation()
-            delay(200.milliseconds)
-            callApis(lat, lon)
-        }
+        getLocation()
 
         loadCurrentWeatherData()
         loadForecastData()
@@ -124,14 +123,36 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                                     weathers[0]?.let { weather ->
                                         infoTxt.text = weather.description
 
-                                        bgImg.load(
-                                            if (isNightNow()) bg_night
-                                            else weather.icon?.let { icon ->
-                                                setDynamicallyWallpaper(icon)
-                                            }
-                                        ) {
+                                        val image = weather.icon?.let {
+                                            setDynamicallyWallpaper(it)
+                                        }
+
+                                        bgImg.load(if (isNightNow()) bg_night else image) {
                                             crossfade(true)
                                             crossfade(100)
+                                        }
+
+                                        val color = if (image == bg_sun) black else white
+
+                                        binding.apply {
+                                            requireContext().apply {
+                                                menuImg.setTint(color)
+                                                addImg.setTint(color)
+
+                                                cityName.setTextColor(getColor(color))
+                                                infoTxt.setTextColor(getColor(color))
+                                                tempTxt.setTextColor(getColor(color))
+
+                                                TempInfoTxt.apply {
+                                                    compoundDrawables.forEach {
+                                                        if (it != null) {
+                                                            it.setTint(getColor(color))
+                                                        }
+                                                    }
+
+                                                    setTextColor(getColor(color))
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -202,10 +223,15 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                 requireContext(), permission.ACCESS_FINE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
         ) {
-            locationClient.lastLocation.addOnSuccessListener { location ->
-                lat = location.latitude
-                lon = location.longitude
-            }
+            locationClient.getCurrentLocation(PRIORITY_HIGH_ACCURACY, null)
+                .addOnSuccessListener { location ->
+                    lat = location.latitude
+                    lon = location.longitude
+                    callApis(lat, lon)
+                    Log.i("getLocation", "lat : $lat lon: $lon")
+                }.addOnFailureListener {
+                    Log.e("getLocation", it.message, it)
+                }
         }
     }
 

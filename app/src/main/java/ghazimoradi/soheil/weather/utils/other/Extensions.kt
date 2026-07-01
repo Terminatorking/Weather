@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
 import androidx.core.view.WindowCompat
 import androidx.core.view.isVisible
@@ -80,4 +81,8 @@ fun FragmentActivity.setStatusBarIconsColor(isDark: Boolean) {
             isAppearanceLightStatusBars = isDark
         }
     }
+}
+
+fun ImageView.setTint(@ColorRes color: Int) {
+    setColorFilter(context.getColor(color))
 }
