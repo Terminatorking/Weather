@@ -39,13 +39,13 @@ import ghazimoradi.soheil.weather.utils.events.Events
 import ghazimoradi.soheil.weather.utils.network.NetworkRequest
 import ghazimoradi.soheil.weather.utils.other.doWorkOnLifecycle
 import ghazimoradi.soheil.weather.utils.other.isVisible
-import ghazimoradi.soheil.weather.utils.other.setStatusBarIconsColor
 import ghazimoradi.soheil.weather.utils.other.setTint
 import ghazimoradi.soheil.weather.utils.other.setupRecyclerview
 import ghazimoradi.soheil.weather.utils.other.showSnackBar
 import ghazimoradi.soheil.weather.viewmodels.MainViewModel
 import java.util.Calendar
 import javax.inject.Inject
+import kotlin.math.roundToInt
 
 @SuppressLint("SetTextI18n")
 @AndroidEntryPoint
@@ -67,8 +67,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-       // requireActivity().setStatusBarIconsColor(false)
 
         binding.apply {
             menuImg.setOnClickListener {
@@ -132,12 +130,10 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                                             crossfade(100)
                                         }
 
-                                        val color = if (isNightNow()) {
+                                        val color = if (isNightNow() || image != bg_sun) {
                                             white
-                                        } else if (image == bg_sun) {
+                                        }  else {
                                             black
-                                        } else {
-                                            white
                                         }
 
                                         binding.apply {
@@ -165,9 +161,9 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                             }
 
                             data.main?.let { main ->
-                                tempTxt.text = "${main.temp}${getString(degreeCelsius)}"
-                                TempInfoTxt.text = "${main.tempMin}${getString(degree)}    " +
-                                        "${main.tempMax}${getString(degree)}"
+                                tempTxt.text = "${main.temp?.roundToInt()}${getString(degreeCelsius)}"
+                                TempInfoTxt.text = "${main.tempMin?.roundToInt()}${getString(degree)}    " +
+                                        "${main.tempMax?.roundToInt()}${getString(degree)}"
                             }
                         }
                     }

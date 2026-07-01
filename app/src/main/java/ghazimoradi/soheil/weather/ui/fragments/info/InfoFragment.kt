@@ -25,6 +25,7 @@ import ghazimoradi.soheil.weather.utils.other.*
 import ghazimoradi.soheil.weather.viewmodels.InfoViewModel
 import kotlinx.coroutines.delay
 import javax.inject.Inject
+import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.milliseconds
 
 @SuppressLint("SetTextI18n")
@@ -65,18 +66,19 @@ class InfoFragment : BaseBottomSheetFragment<FragmentInfoBinding>() {
                 }
                 //Main
                 data.main?.let { main ->
-                    tempTxt.text = "${main.temp}${getString(degreeCelsius)}"
+                    tempTxt.text = "${main.temp?.roundToInt()}${getString(degreeCelsius)}"
                     TempInfoTxt.text =
-                        "${main.tempMin}${getString(degree)}    " + "${main.tempMax}${getString(degree)}"
+                        "${main.tempMin?.roundToInt()}${getString(degree)}    " +
+                                "${main.tempMax?.roundToInt()}${getString(degree)}"
                     //Include
                     weatherLay.apply {
-                        feelCountTxt.text = "${main.feelsLike}${getString(degreeCelsius)}"
+                        feelCountTxt.text = "${main.feelsLike?.roundToInt()}${getString(degreeCelsius)}"
                         pressureCountTxt.text = "${main.humidity}%"
                     }
                 }
                 //Wind
                 data.wind?.let { wind ->
-                    weatherLay.windCountTxt.text = "${wind.speed} ${getString(km_s)}"
+                    weatherLay.windCountTxt.text = "${wind.speed?.roundToInt()} ${getString(km_s)}"
                 }
             }
         }
