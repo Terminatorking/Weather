@@ -132,7 +132,13 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                                             crossfade(100)
                                         }
 
-                                        val color = if (image == bg_sun) black else white
+                                        val color = if (isNightNow()) {
+                                            white
+                                        } else if (image == bg_sun) {
+                                            black
+                                        } else {
+                                            white
+                                        }
 
                                         binding.apply {
                                             requireContext().apply {

@@ -102,7 +102,7 @@ class AddCityFragment : BaseBottomSheetFragment<FragmentAddCityBinding>() {
             viewModel.saveCity(cityEntity)
 
             doWorkOnLifecycle {
-                EventBus.publish(Events.OnUpdateWeather(cityEntity.name, it.lat, it.lon))
+                EventBus.publish(Events.OnUpdateWeather(it.lat, it.lon))
             }
 
             this@AddCityFragment.dismiss()

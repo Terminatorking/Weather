@@ -64,7 +64,7 @@ class CitiesListFragment : BaseBottomSheetFragment<FragmentCitiesListBinding>() 
             if (type == CityClickTypes.SELECT) {
                 //Update event
                 doWorkOnLifecycle {
-                    EventBus.publish(Events.OnUpdateWeather(data.name, data.lat, data.lon))
+                    EventBus.publish(Events.OnUpdateWeather(data.lat, data.lon))
                 }
 
                 //Close dialog
