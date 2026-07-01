@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import ghazimoradi.soheil.weather.data.models.database.CitiesEntity
 import ghazimoradi.soheil.weather.data.models.main.ResponseCurrentWeather
 import ghazimoradi.soheil.weather.data.models.main.ResponseForecast
 import ghazimoradi.soheil.weather.data.repositories.MainRepository
@@ -26,15 +25,6 @@ class MainViewModel @Inject constructor(
 
     private val _forecastData = MutableLiveData<NetworkRequest<ResponseForecast>>()
     val forecastData: LiveData<NetworkRequest<ResponseForecast>> = _forecastData
-
-    private val _citiesData = MutableLiveData<List<CitiesEntity>>()
-    val citiesData: LiveData<List<CitiesEntity>> = _citiesData
-
-    fun callCitiesData() = viewModelScope.launch {
-        repository.getCities().collect {
-            _citiesData.value = it
-        }
-    }
 
     fun callCurrentWeatherApi(lat: Double, lon: Double) {
         viewModelScope.launch {
