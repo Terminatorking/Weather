@@ -68,7 +68,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        requireActivity().setStatusBarIconsColor(false)
+       // requireActivity().setStatusBarIconsColor(false)
 
         binding.apply {
             menuImg.setOnClickListener {
