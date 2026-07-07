@@ -16,6 +16,7 @@ import coil3.request.crossfade
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority.PRIORITY_HIGH_ACCURACY
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import ghazimoradi.soheil.weather.R.color.black
 import ghazimoradi.soheil.weather.R.color.white
@@ -57,8 +58,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     private val viewModel by viewModels<MainViewModel>()
     private val calendar by lazy { Calendar.getInstance() }
 
-    private var lat = 40.7128
-    private var lon = 74.0060
+    private var lat = 34.0204789
+    private var lon = -118.4117326
 
     private lateinit var locationClient: FusedLocationProviderClient
 
@@ -132,7 +133,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
                                         val color = if (isNightNow() || image != bg_sun) {
                                             white
-                                        }  else {
+                                        } else {
                                             black
                                         }
 
@@ -225,10 +226,18 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                 requireContext(), permission.ACCESS_FINE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
         ) {
+            val snackBar =
+                Snackbar.make(binding.root, "درحال دریافت موقعیت مکانی", Snackbar.LENGTH_INDEFINITE)
+
+            snackBar.show()
+
             locationClient.getCurrentLocation(PRIORITY_HIGH_ACCURACY, null)
                 .addOnSuccessListener { location ->
-                    lat = location.latitude
-                    lon = location.longitude
+                    snackBar.dismiss()
+                    location?.let {
+                        lat = it.latitude
+                        lon = it.longitude
+                    }
                     callApis(lat, lon)
                     Log.i("getLocation", "lat : $lat lon: $lon")
                 }.addOnFailureListener {
